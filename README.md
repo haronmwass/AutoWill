@@ -1,57 +1,136 @@
-# My Massa Smart-contract Project
+# 🧾 AutoWill – Decentralized Will Executor on Massa Blockchain
 
-## Build
+**AutoWill** is a decentralized application (dApp) that allows users to create digital wills directly on the **Massa blockchain**. This application enables secure, trustless transfers of MAS tokens to a beneficiary wallet address after a user-defined unlock time.
 
-By default this will build all files in `assembly/contracts` directory.
+---
 
-```shell
-npm run build
-```
+## 🚀 Features
 
-## Deploy a smart contract
+- 📝 Create digital wills with:
+  - Beneficiary Massa address
+  - Amount in MAS tokens
+  - Optional personal message
+  - Future unlock timestamp
+- 🔐 Trustless execution on the Massa smart contract layer
+- 📅 Friendly date/time picker for unlock scheduling
+- ✅ Validates Massa wallet addresses
+- 📡 Massa `massa-web3` SDK integration
+- 📤 Deploy and interact with real smart contracts
+- 🧾 Read & Withdraw functionality (coming next)
+- 🌐 Responsive frontend built with React & Tailwind CSS
 
-Prerequisites :
+---
 
-- You must add a `.env` file at the root of the repository with the following keys set to valid values :
-  - WALLET_SECRET_KEY="wallet_secret_key"
-  - JSON_RPC_URL_PUBLIC=<https://test.massa.net/api/v2:33035>
+## 🛠️ Technologies Used
 
-These keys will be the ones used by the deployer script to interact with the blockchain.
+| Component     | Technology         |
+|---------------|--------------------|
+| Blockchain    | [Massa Network](https://massa.net/) |
+| Smart Contracts | WebAssembly (AssemblyScript) |
+| Frontend      | React + TypeScript |
+| Wallet & Chain Integration | [`massa-web3`](https://www.npmjs.com/package/@massalabs/massa-web3) |
+| UI Framework  | Tailwind CSS       |
+| Date Picker   | `react-datepicker` |
 
-The following command will build contracts in `assembly/contracts` directory and execute the deployment script
-`src/deploy.ts`. This script will deploy on the node specified in the `.env` file.
 
-```shell
-npm run deploy
-```
 
-You can modify `src/deploy.ts` to change the smart contract being deployed, and to pass arguments to the constructor
-function:
 
-- line 31: specify what contract you want to deploy
-- line 33: create the `Args` object to pass to the constructor of the contract you want to deploy
+## 📦 Installation & Setup
 
-When the deployment operation is executed on-chain, the
-[constructor](https://github.com/massalabs/massa-sc-toolkit/blob/main/packages/sc-project-initializer/commands/init/assembly/contracts/main.ts#L10)
-function of the smart contract being deployed will
-be called with the arguments provided in the deployment script.
+### Prerequisites
 
-You can edit this script and use [massa-web3 library](https://www.npmjs.com/package/@massalabs/massa-web3)
-to create advanced deployment procedure.
+- Node.js v18+
+- Massa node & client running locally OR access to Massa buildnet/testnet
+- Git
 
-For more information, please visit our ReadTheDocs about
-[Massa smart-contract development](https://docs.massa.net/en/latest/web3-dev/smart-contracts.html).
+---
 
-## Unit tests
+### 1. Clone the repository
 
-The test framework documentation is available here: [as-pect docs](https://as-pect.gitbook.io/as-pect)
+```bash
+git clone https://github.com/your-username/autowill-massa.git
+cd autowill-massa
 
-```shell
-npm run test
-```
 
-## Format code
 
-```shell
-npm run fmt
-```
+
+2. Install dependencies
+
+cd frontend
+npm install
+
+
+ Start the frontend
+
+npm run dev
+
+Open http://localhost:3000 to view it in the browser.
+
+
+Massa Node/Client Setup
+
+Make sure you are running a local Massa node and client. You can use the official Massa node setup guide.
+
+You must also update your .env or wallet provider config to point to the correct RPC/REST endpoint (e.g., http://127.0.0.1:33035).
+
+📄 Smart Contract (AssemblyScript)
+
+The smart contract is deployed using massa-sc-runtime and contains logic to store will data and release funds after unlock time.
+
+    Coming soon: Will contract source code and deployment instructions.
+
+🧪 Testing
+
+    Connect with a funded Massa wallet
+
+    Fill in:
+
+        Valid Massa address
+
+        Amount (MAS)
+
+        Message (optional)
+
+        Unlock time using the datepicker
+
+    Click Submit Will
+
+    Watch for confirmation or errors
+
+❓How It Works
+
+    User fills in will details.
+
+    Frontend validates address and formats data.
+
+    Smart contract is called with stored values using massa-web3.
+
+    Funds are locked and only withdrawable after unlock time.
+
+    Users will later be able to read their wills and withdraw unlocked assets.
+
+⚠️ Known Issues
+
+    Contract address must be correctly configured in the code 
+
+    Currently supports buildnet/testnet; mainnet integration pending
+
+    Full Withdraw and Read functionality still under final testing
+
+📌 Future Roadmap
+
+     Add contract event listener to show status
+
+    Deploy smart contract to buildnet
+
+     Enable reading of wills per user wallet
+
+    Enable claiming/withdrawing when time unlocks
+
+    Add MNS (Massa Name Service) support
+
+    Improve error handling and edge case validation
+
+🙌 Team
+
+Built by the AutoWill Team as part of the Massa Hackathon.
